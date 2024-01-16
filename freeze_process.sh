@@ -1,16 +1,17 @@
 #!/bin/bash
 
 # Check if a process ID was provided
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 PROCESS_ID"
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 EVTEST_EVENT_CODE PROCESS_ID"
     exit 1
 fi
 
-# Assign the first argument to PROCESS_ID
-PROCESS_ID=$1
+# Assign the first argument to EVTEST_EVENT_CODE PROCESS_ID
+EVENT_CODE=$1
+PROCESS_ID=$2
 
 # Replace with the correct event number for your controller
-CONTROLLER_EVENT="/dev/input/event16"
+CONTROLLER_EVENT="/dev/input/event$EVENT_CODE"
 
 # Initialize the state of the process (0 for running, 1 for stopped)
 PROCESS_STATE=0
